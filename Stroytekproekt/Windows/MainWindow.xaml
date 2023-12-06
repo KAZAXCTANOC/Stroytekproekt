@@ -1,0 +1,43 @@
+﻿<Window x:Class="Stroytekproekt.Windows.MainWindow" mc:Ignorable="d"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:VM="clr-namespace:Stroytekproekt.ViewModels"
+             d:DesignHeight="450" d:DesignWidth="800" Title="Тестовый проект">
+	<Window.DataContext>
+		<VM:MainWindowViewModel/>
+	</Window.DataContext>
+	
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		
+		<ItemsControl Grid.Row="0" ItemsSource="{Binding DataInsertControls}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<ContentPresenter Content="{Binding ControlWindow}"/>
+					</Grid>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+
+		<StackPanel Grid.Row="1" Margin="0,0,0,20">
+			<Label Content="Координаты точки: "/>
+			<ContentPresenter Content="{Binding LocationPointControll.ControlWindow}"/>
+		</StackPanel>
+		<Button Margin="2,5" Command="{Binding CreateLinesCommand}" Content="Начать подсчёт" Grid.Row="2"/>
+		<Button Margin="2,5" Command="{Binding AddDataCommand}" Content="Добавить точку" Grid.Row="3"/>
+		<Button Margin="2,5" Command="{Binding ReadCSVFileCommand}" Content="Загрузить из файла" Grid.Row="4"/>
+	</Grid>
+</Window>
